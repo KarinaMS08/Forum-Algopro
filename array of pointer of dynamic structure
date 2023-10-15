@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Siswa {
+    int ID;
+    char Nama[50];
+    char Prodi[50];
+    float GPA;
+};
+
+int main() {
+    //Array struct untuk menyimpan data siswa
+    struct Siswa dataMahasiswa[100];
+    int jumlahMahasiswa = 0;  //Jumlah mahasiswa yang sudah di-entry
+
+    int pilihan;
+
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Entry Data Mahasiswa\n");
+        printf("2. Tampilkan Data Mahasiswa\n");
+        printf("3. Keluar\n");
+        printf("Pilih menu: ");
+        scanf("%d", &pilihan);
+
+        if (pilihan == 1) {
+            //Entry data siswa
+            if (jumlahMahasiswa < 100) {
+                printf("\n");
+                printf("Masukkan ID: ");
+                scanf("%d", &dataMahasiswa[jumlahMahasiswa].ID);
+                printf("Masukkan Nama: ");
+                scanf(" %[^\n]s", dataMahasiswa[jumlahMahasiswa].Nama);
+                printf("Masukkan Prodi: ");
+                scanf(" %[^\n]s", dataMahasiswa[jumlahMahasiswa].Prodi);
+                printf("Masukkan GPA: ");
+                scanf("%f", &dataMahasiswa[jumlahMahasiswa].GPA);
+
+                jumlahMahasiswa++;
+            } else {
+                printf("Kapasitas data penuh!\n");
+            }
+        } else if (pilihan == 2) {
+            //Tampilkan data siswa
+            if (jumlahMahasiswa == 0) {
+                printf("\nBelum Ada Data Mahasiswa yang Terdaftar.\n");
+            } else {
+                printf("\n");
+                printf("Data Mahasiswa:\n");
+                for (int i = 0; i < jumlahMahasiswa; i++) {
+                    printf("ID: %d\n", dataMahasiswa[i].ID);
+                    printf("Nama: %s\n", dataMahasiswa[i].Nama);
+                    printf("Prodi: %s\n", dataMahasiswa[i].Prodi);
+                    printf("GPA: %.2f\n", dataMahasiswa[i].GPA);
+                    printf("\n");
+                }
+            }
+        } else if (pilihan == 3) { //Keluar dari program
+            printf("\n");
+            printf("Terima Kasih Telah Menggunakan Program Ini\n");
+            break;
+        } else {
+            printf("Pilihan Tidak Valid. Silahkan Coba Lagi (Pilih 1, 2, atau 3)\n");
+        }
+    }
+
+    return 0;
+}
